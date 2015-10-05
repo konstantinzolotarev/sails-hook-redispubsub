@@ -1,0 +1,28 @@
+{
+  "name": "sails-hook-redispubsub",
+  "version": "1.0.0",
+  "description": "Sails.js hook implementing redis pub-sub",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "sails",
+    "redis",
+    "pubsub",
+    "sailsjs",
+    "s2s"
+  ],
+  "dependencies": {
+    "redis": "^2.1.0"
+  },
+  "sails": {
+    "isHook": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:konstantinzolotarev/sails-hook-redispubsub.git"
+  },
+  "author": "Konstantin Zolotarev <konstantin.zolotarev@gmail.com>",
+  "license": "MIT"
+}
