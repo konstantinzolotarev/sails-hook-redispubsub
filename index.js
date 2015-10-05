@@ -1,15 +1,12 @@
 'use strict';
 
-module.exports = function (sails) {
+module.exports = function (app) {
 
   return {
 
-  	defaults: require('lib/defaults'),
+  	defaults: require('./lib/defaults'),
 
-    initialize: function (cb) {
-      
-      cb();
-    }
+    initialize: require('./lib/initialize')(app)
 
   };
 };
