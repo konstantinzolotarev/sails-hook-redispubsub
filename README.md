@@ -1,0 +1,1 @@
+# Sails.js Redis PUbSub hook
