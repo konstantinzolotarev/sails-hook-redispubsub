@@ -1,6 +1,6 @@
 {
   "name": "sails-hook-redispubsub",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Sails.js hook implementing redis pub-sub",
   "main": "index.js",
   "scripts": {
