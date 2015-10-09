@@ -47,14 +47,14 @@ module.exports.redispubsub = {
     options: {
       host: 'localhost',
       port: 6370
-    },
-
-    /**
-     * Channel name of redis pub/sub
-     * @type {String}
-     */
-    channel: 'sails-new'
+    }
   },
+
+  /**
+   * Channel name of redis pub/sub
+   * @type {String}
+   */
+  channel: 'sails-new'
 
   onSubscribe: function(channel, count) {
     console.log(channel, count);
