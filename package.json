@@ -4,7 +4,7 @@
   "description": "Sails.js hook implementing redis pub-sub",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node ./node_modules/mocha/bin/mocha --timeout 5000 --recursive"
   },
   "keywords": [
     "sails",
@@ -26,5 +26,11 @@
     "url": "git@github.com:konstantinzolotarev/sails-hook-redispubsub.git"
   },
   "author": "Konstantin Zolotarev <konstantin.zolotarev@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "mocha": "^2.3.3",
+    "sails": "^0.11.2",
+    "sinon": "^1.17.1"
+  }
 }
