@@ -152,3 +152,7 @@ module.exports.redispubsub = {
 };
 
 ```
+
+# License
+
+MIT
