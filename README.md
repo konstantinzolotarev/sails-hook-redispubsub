@@ -1,5 +1,6 @@
 # Sails.js Redis PubSub hook
 
+[![npm version](https://badge.fury.io/js/sails-hook-redispubsub.svg)](https://badge.fury.io/js/sails-hook-redispubsub)
 [![Build Status](https://travis-ci.org/konstantinzolotarev/sails-hook-redispubsub.svg)](https://travis-ci.org/konstantinzolotarev/sails-hook-redispubsub)
 
 **This hook is in development and has very limited functionnality please feel free to create issues and new features requests**
