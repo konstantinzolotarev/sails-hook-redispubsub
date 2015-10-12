@@ -4,6 +4,12 @@
 
 Main idea of the hook is to give application written with Sails.js ability to communicate with each other using redis Pub/Sub.
 
+## Send events
+
+### Send global events
+
+Global event will receive all (your) servers that subscribed to given channel.
+
 To send message you could use this method:
 ```javascript
 // Send message to all sails instances/servers/applications
@@ -13,7 +19,62 @@ sails.redispubsub.publish({
 });
 ```
 
-Unfortunatelly right now you can receive messages only in `config/redispubsub.js` file using `onMessage(channel, message)` method.
+or
+```javascript
+// Send message to all sails instances/servers/applications
+sails.redispubsub.publish('clearCache', {
+  items: 'test'
+});
+```
+
+### Send local events
+
+Local event will be received only by instance that sent event.
+
+Sending local event:
+```javascript
+sails.redispubsub.emit('event', { /*... something ... */ });
+```
+
+**Note that message that you will send will be converted to string using `JSON.stringify` please do not send streams, functions in it !**
+
+## Event handling
+
+### Handling global/local events using subscribers
+
+Subscribe on event into your code:
+```javascript
+// Note that sails is a global variable
+sails.redispubsub.on('event', function(data) {
+  // Event handled
+  sails.log.debug('event handled', data);
+});
+```
+
+And send event from another server (all servers including current will receive event):
+```javascript
+sails.redispubsub.publish('event', {
+  something: 'anything'
+});
+```
+
+Or you could send message only to current instance using `emit` method:
+**Only current server will receive this message !**
+```javascript
+sails.redispubsub.emit('event', {
+  something: 'anything'
+});
+```
+
+Hook is based on default `EventEmitter` class. So you could use any method from it.
+[List of methods](https://nodejs.org/api/events.html#events_emitter_removealllisteners_event)
+
+**Note:** `emit()` method will send event **only** to current instance !
+To send event to all instances use `publish()` method.
+
+### Handling all global messages (for all global events)
+
+You could handle all messages using `config/redispubsub.js` configuration file and `onMessage(channel, message)` method in it.
 
 Example `config/redispubsub.js`:
 ```javascript
@@ -43,7 +104,11 @@ This hook support redis connection options (full list of options you could find 
 ```javascript
 
 module.exports.redispubsub = {
+  /**
+   * Redis connection settings
+   */
   connection: {
+
     options: {
       host: 'localhost',
       port: 6370
@@ -52,18 +117,35 @@ module.exports.redispubsub = {
 
   /**
    * Channel name of redis pub/sub
+   * By default hook use channel name: 'sails'
+   *
    * @type {String}
    */
   channel: 'sails-new'
 
+  /**
+   * On subscribe handler
+   *
+   * @type {function}
+   */
   onSubscribe: function(channel, count) {
     console.log(channel, count);
   },
 
+  /**
+   * Error handler
+   *
+   * @type {function}
+   */
   onError: function(err) {
     console.log(err);
   },
 
+  /**
+   * Global message handler
+   *
+   * @type {function}
+   */
   onMessage: function(channel, message) {
     console.log(message);
   }
