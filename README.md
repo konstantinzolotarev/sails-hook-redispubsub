@@ -1,5 +1,7 @@
 # Sails.js Redis PubSub hook
 
+[![Build Status](https://travis-ci.org/konstantinzolotarev/sails-hook-redispubsub.svg)](https://travis-ci.org/konstantinzolotarev/sails-hook-redispubsub)
+
 **This hook is in development and has very limited functionnality please feel free to create issues and new features requests**
 
 Main idea of the hook is to give application written with Sails.js ability to communicate with each other using redis Pub/Sub.
