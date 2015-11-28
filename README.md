@@ -156,6 +156,31 @@ module.exports.redispubsub = {
 
 ```
 
+## Passing existing pubClient and subClient
+You are able to pass existing `pubClient` and `subClient` to this hook.
+So hook wouldn't create a new connections.
+
+in `config/redispubsub.js` file:
+This hook support redis connection options (full list of options you could find [here](https://github.com/NodeRedis/node_redis#overloading)):
+
+```javascript
+
+module.exports.redispubsub = {
+  /**
+   * Redis connection settings
+   */
+  connection: {
+
+    pubClient: pubClient,
+
+    subClient: subClient
+  }
+  // ...
+}
+```
+
+In this case you don't need to pass `connection.options`
+
 # License
 
 MIT
